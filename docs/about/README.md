@@ -47,7 +47,7 @@ https://blog.csdn.net/qq_39005315
 #### 博客地址
 
 ```js
-http://gotang.cn:8080
+http://gotang.cn
 ```
 
 
