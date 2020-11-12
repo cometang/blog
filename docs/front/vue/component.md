@@ -22,6 +22,8 @@ components
    └── Son2.vue     // 儿子2
 ```
 在父组件中使用儿子组件
+
+
 ```html
 <template>
  <div>
