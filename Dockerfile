@@ -1,4 +1,4 @@
-From nginx
+FROM nginx
 LABEL name = "blog"
 LABEL version ="1.0"
 COPY ./docs/.vuepress/dist  /usr/share/nginx/html
