@@ -6,12 +6,6 @@
 ---
 
 
-- asdasdsa
-- 1112222阿斯达四大阿萨德
-
-- sadasd sad
-- asdasdasd
-
 ## 快速原型开发
 可以快速识别.vue文件封装组件插件等功能
 ```bash
