@@ -45,6 +45,15 @@ module.exports = [
 		]
 	},
 	{
+		text: '证券交易',
+		link: '/makeMoney/',
+		items: [{
+				text: '高顿初级课程',
+				link: '/makeMoney/gaodun/'
+			},
+		]
+	},
+	{
 		text: '随想笔录',
 		link: '/notice/',
 		items: [{
