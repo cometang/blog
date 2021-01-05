@@ -51,6 +51,10 @@ module.exports = [
 				text: '高顿初级课程',
 				link: '/makeMoney/gaodun/'
 			},
+			{
+				text: '集合竞价',
+				link: '/makeMoney/集合竞价/'
+			},
 		]
 	},
 	{
