@@ -53,7 +53,7 @@ module.exports = [
 			},
 			{
 				text: '集合竞价',
-				link: '/makeMoney/集合竞价/'
+				link: '/makeMoney/jhjj/'
 			},
 		]
 	},
