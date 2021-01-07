@@ -2,6 +2,7 @@ module.exports = {
 	//页面顶部title
 	title: 'cometang技术专区--唐世杰',
 	//页面描述
+	dest: './dist',   // 设置输出目录
 	description: 'Technology pursues art and art challenges technology',
 
 	head: [
