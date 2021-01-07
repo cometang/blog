@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "vuepress": "1.5.2",
     "vuepress-theme-reco": "^1.0.4"
   }
 }
