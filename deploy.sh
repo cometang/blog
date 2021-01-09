@@ -4,30 +4,39 @@
 set -e
 
 # 生成静态文件
-npm run docs:build
+npm run build
 
-#更新博客笔记线上文件
-git pull git@github.com:cometang/blog.git master
-git add -A
-git commit -m 'newNotice'
-git push -f git@github.com:cometang/blog.git master
-
-
-# 进入生成的文件夹 更新博客显示项目
+# 进入生成的文件夹
 cd docs/.vuepress/dist
 
-# 如果是发布到自定义域名
-# echo 'www.example.com' > CNAME
-
-
+# deploy to github
+echo 'b.xugaoyi.com' > CNAME
+if [ -z "$GITHUB_TOKEN" ]; then
+  msg='deploy'
+  githubUrl=git@github.com:xugaoyi/vuepress-theme-vdoing.git
+else
+  msg='来自github actions的自动部署'
+  githubUrl=https://xugaoyi:${GITHUB_TOKEN}@github.com/xugaoyi/vuepress-theme-vdoing.git
+  git config --global user.name "xugaoyi"
+  git config --global user.email "894072666@qq.com"
+fi
 git init
 git add -A
-git commit -m 'deploy'
+git commit -m "${msg}"
+git push -f $githubUrl master:gh-pages # 推送到github
 
-# 如果发布到 https://<USERNAME>.github.io
-git push -f git@github.com:cometang/cometang.github.io.git master
+# deploy to coding
+echo 'www.xugaoyi.com\nxugaoyi.com' > CNAME  # 自定义域名
+echo 'google.com, pub-7828333725993554, DIRECT, f08c47fec0942fa0' > ads.txt # 谷歌广告相关文件
 
-# 如果发布到 https://<USERNAME>.github.io/<REPO>
-# git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
+if [ -z "$CODING_TOKEN" ]; then  # -z 字符串 长度为0则为true；$CODING_TOKEN来自于github仓库`Settings/Secrets`设置的私密环境变量
+  codingUrl=git@e.coding.net:xgy/xgy.git
+else
+  codingUrl=https://HmuzsGrGQX:${CODING_TOKEN}@e.coding.net/xgy/xgy.git
+fi
+git add -A
+git commit -m "${msg}"
+git push -f $codingUrl master # 推送到coding
 
-cd -
+cd - # 退回开始所在目录
+rm -rf docs/.vuepress/dist
