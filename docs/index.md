@@ -1,7 +1,7 @@
 ---
 home: true
 # heroImage: /img/web.png
-heroText: Come Tang
+heroText: ComeTang
 tagline: Web前端技术博客，相信技术的力量。
 # actionText: 立刻进入 →
 # actionLink: /web/
