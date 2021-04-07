@@ -52,7 +52,7 @@ module.exports = {
   blogger: {
     // 博主信息，显示在首页侧边栏
     avatar: '/img/hero.jpg',
-    name: 'Come Tang',
+    name: 'cometang',
     slogan: '唐家世少',
   },
   social: {
@@ -75,7 +75,7 @@ module.exports = {
     // 页脚信息
     createYear: 2018, // 博客创建年份
     copyrightInfo:
-      'ComeTang 唐家世少', // 博客版权信息，支持a标签
+      ' cometang唐家世少', // 博客版权信息，支持a标签
   },
   // htmlModules // 插入hmtl(广告)模块
 }
