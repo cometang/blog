@@ -17,7 +17,7 @@ module.exports = [
     text: '后端',
     link: '/back/',
     items: [
-      { text: 'Node', link: '/pages/8309a5b876fc95e3/' },
+      { text: 'Node', link: '/pages/5836c7/' },
       { text: 'PHP', link: '/pages/0a83b083bdf257cb/' },
     ],
   },

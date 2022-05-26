@@ -1,0 +1,355 @@
+---
+title: express搭建后端项目
+date: 2022-05-26 22:57:43
+permalink: /pages/5836c7/
+categories:
+  - 后端
+tags:
+  - 
+---
+
+
+
+# 环境准备
+
+## 前置环境
+
+- nodejs +npm+yarn 底层环境
+- phpstudy【启动mysql本地服务】
+- navicat 【图形化数据库界面】
+
+## express  环境安装 
+
+- 安装express 脚手架 工具 快速搭建项目
+
+```js
+yarn global add express-generator
+```
+
+或
+
+```js
+npm install express-generator -g 
+```
+
+```js
+express --version   #查看是否安装成功
+```
+
+
+
+# express 项目初始化
+
+```js
+express 项目名 
+```
+
+```js
+yarn  或者 npm install    #安装所有三方包
+```
+
+```js
+yarn start   #启动项目 启动后默认打开3000端口
+```
+
+![图2](/img/express/1.png)
+
+
+
+# 项目的目录结构分析
+
+```js
+shop
+├── bin
+│   └── www
+├── public      			#静态资源文件
+│   ├── images
+│   ├── javascripts
+│   └── stylesheets
+│       └── style.css
+├── routes                  #路由 模块
+│   ├── index.js
+│   └── users.js
+├── views					#页面
+│   ├── error.jade
+│   ├── index.jade
+│   └── layout.jade
+├── app.js                  #主模块  入口文件
+└── package.json            #项目依赖
+```
+
+
+
+# 开发准备配置
+
+- 代码热更新插件  nodemon 
+
+```js
+npm install nodemon -g   
+nodemon  -v
+```
+
+- 修改package.json  的启动命令
+
+```json
+"scripts": {
+ "start": "nodemon ./bin/www"
+},
+```
+
+# 配置端口号
+
+>  在app.js 入口文件中  暴露app对象的前面 增加端口号配置 
+
+```js
+//端口号配置
+app.listen(8099,()=>{
+  console.log('后端服务启动成功');
+  console.log('服务地址为:http://localhost:8099');
+})
+```
+
+![图2](/img/express/2.png)
+
+
+
+# 接口开发
+
+## 路由模块-routes 
+
+> 请求地址的跳转路径 是通过路由文件  routes 中进行加载实现的
+>
+> 路由文件主要管理 各个接口请求的跳转和处理
+
+- 添加自己的路由 实现第一个接口的调用
+
+> 在routes 中 创建新的路由模块 `goods.js`
+
+```js
+var express = require('express');
+var router = express.Router();
+
+router.get('/',(req,res,next)=>{
+    //req 请求的数据 request 
+    //res 响应的数据  response 
+    //next  调用：next()  作用：只要当前功能没被结束，跳转到下一个相同路由的内部
+    res.send('我是商品列表')
+})
+
+module.exports = router;
+```
+
+> 在主模块 `app.js` 中导入 创建的路由 并通过app.use方法 注册该模块
+
+```js
+const goodsRouter = require('./routes/goods')
+app.use('/goods', goodsRouter);
+```
+
+> 验证是否成功
+
+```js
+浏览器访问 localhost:3000/goods/
+```
+
+![图2](/img/express/3.png)
+
+
+
+# 数据库接入准备
+
+> 项目中安装三方包 mysql 
+
+```js
+yarn add mysql 
+```
+
+> 启动数据库的本地服务
+
+- phpstudy   开启mysql 
+- navicat 查看数据的数据--并完成数据库的创建和数据表的设计
+
+```js
+#创建的数据库名： demo 
+#数据库用户:root   
+#数据库密码：root 
+```
+
+```js
+#goods表
+```
+
+| id       | name | price | img | desc |
+| :------- | :--- | :----- | ------ | ------ |
+| 1  | vivo X Note   | 6999 |  | vivo X Note 12GB+512GB 璨夜黑 7英寸2K+ E5超感宽幕 3D大面积指纹 旗舰骁龙8 Gen1 5G 大屏  |
+| 2 | Apple iPhone 13    | 5999 |    | Apple iPhone 13 (A2634) 128GB 星光色 支持移动联通电信5G 双卡双待 |
+| 3     | vivo iQOO   | 3200 |    | vivo iQOO 8 12GB+256GB 传奇版 120W闪充 骁龙888 独立显示芯片 KPL官方赛事电竞 |
+
+
+
+# 数据库接入
+
+- 创建数据库连接 的文件 db.js 
+
+```js
+routes/db/db.js
+```
+
+```js
+var mysql = require('mysql'); // 引入mysql第三方模块 yarn add mysql
+// 创建连接对象
+var connection = mysql.createConnection({
+  host: 'localhost', // 地址 本地 http://127.0.0.1
+  user: 'root', // 用户名
+  password: 'root', // 密码
+  database: 'demo' // 要连接的数据库的名字
+});
+connection.connect(); // 调用连接方法
+// 暴露模块
+module.exports = connection;
+```
+
+- 在需要使用的路由模块中 导入db.js 
+
+```js
+const db = require('./db/db');
+//获取到商品列表
+router.get('/', function (req, res, next) {
+  // 写好sql 语句
+  // 数据库 运行sql语句--后端请求数据库
+  let sql = 'select * from goods'
+  // err  数据库如果出现了异常 返回的错误信息
+  // data 数据库返回的数据
+  db.query(sql,  (err, data)=> {
+    res.send(data)
+  })
+});
+```
+
+- 通过浏览器请求该地址 或者通过postman 发送 get请求
+
+![图2](/img/express/4.png)
+
+
+
+# 前端请求参数的获取
+
+## 1.post 发送的json数据-req.body
+
+```js
+router.post('/', function (req, res, next) {
+    //获取请求参数-post json数据
+    console.log(req.body)
+})
+```
+
+## 2.get 请求的url 携带参数 获取键值对
+
+> 请求参数携带方式：`  url?key=value&key1=value1`
+
+```js
+router.get('/', function (req, res, next) {
+    //获取请求参数-post json数据
+    let data = req.query;
+})
+```
+
+## 3.get 请求的url 携带参数  获取id
+
+>  请求参数携带方式：/goods/info/100001`
+
+```js
+地址： /goods/info/{id}          
+请求参数： id 商品id
+请求方式：get
+```
+
+```js
+router.get('/info/:id', function (req, res, next) {
+   //获取直接将数据拼接到 请求地址上的get请求的数据
+  console.log(req.params.id);
+})
+```
+
+## 4.获取文件-保存文件方式
+
+```js
+yarn  add multer
+```
+
+```js
+const multer = require("multer");
+const db = require('./db/db');
+
+const storage = multer.diskStorage({
+    destination: "public/images/upload", 
+    filename: function (req, file, cb) {
+      var fileFormat = file.originalname.split(".");
+      var filename = new Date().getTime();
+      cb(null, filename + "." + fileFormat[fileFormat.length - 1]);
+    },
+  });
+  // 上传对象
+  const upload = multer({
+    storage,
+  });
+
+// 图片上传接口
+router.post("/upload", upload.single("file"), (req, res) => {
+    let { filename } = req.file;
+    if(filename){
+        res.send(0,'上传成功','/images/upload/'+filename)
+    }else{
+         res.send(1,'上传图片失败，检查file对象是否发送')
+    }
+  });
+```
+
+```js
+//axios 封装的post 请求在发送formdata时会自动更新页面  
+let inp = document.querySelector('input');
+        inp.addEventListener('change', function (event) {
+            let file = this.files[0];
+            event.preventDefault();
+            //将文件对象放到 formData中
+            let formData = new FormData();
+            formData.append("file", file);
+			//实例化axios
+            const uploadFile = axios.create({
+                baseURL: 'http://localhost:9000', 
+                timeout: 5000,
+                headers: {'Content-Type': 'multipart/form-data'}
+            });
+            //设置请求头 并 发送文件
+            uploadFile({
+                url: '/addGoods/upload',
+                method: 'post',
+                data: formData
+            }).then(res => {
+                alert(res.data.data)
+            })
+
+        })
+
+```
+
+
+
+# 跨域问题解决
+
+>  在app.js 入口文件 取消 请求头限制
+>
+> 注意：必须现在模块 注册代码之前
+
+```js
+
+//设置允许跨域访问该服务.
+app.all('*', function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Methods', '*');
+  res.header('Content-Type', 'application/json;charset=utf-8');
+  next();
+});
+```
+
