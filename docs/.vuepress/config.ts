@@ -35,7 +35,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
           { text: 'html5', link: '/pages/712869/' },
           { text: 'JavaScript', link: '/pages/b349c2/' },
           { text: 'ES6', link: '/pages/712848/' },
-          { text: 'Vue', link: '/pages/decaf9/' },
+          { text: 'Vue', link: '/pages/658702/' },
           { text: 'react', link: '/pages/5d463fbdb172d43b/' },
         ],
       },
