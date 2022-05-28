@@ -11,23 +11,9 @@ yarn.lock
 # vuepress
 docs/.vuepress/dist
 
+dist
 # 百度链接推送
 urls.txt
 
 # mac
 .DS_Store
-
-node_modules/
-dist/
-bin/
-build/
-log/
-logs/
-target/
-.gradle/
-.settings/
-.classpath
-.project
-.vertx/
-.idea
-unpackage/
