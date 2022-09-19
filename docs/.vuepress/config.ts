@@ -185,14 +185,14 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     ],
     ['meta', { name: 'baidu-site-verification', content: '7F55weZDDc' }], // 百度统计的站长验证（你可以去掉）
     ['meta', { name: 'theme-color', content: '#11a8cd' }], // 移动浏览器主题颜色
-    // [
-    //   'script',
-    //   {
-    //     'data-ad-client': 'ca-pub-7828333725993554',
-    //     async: 'async',
-    //     src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
-    //   },
-    // ], // 网站关联Google AdSense 与 html格式广告支持（你可以去掉）
+    [
+      'script',
+      {
+        'data-ad-client': 'ca-pub-7828333725993554',
+        async: 'async',
+        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+      },
+    ], // 网站关联Google AdSense 与 html格式广告支持（你可以去掉）
   ],
 
 
@@ -278,9 +278,9 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
       {
         choosen: 'gitalk',
         options: {
-          clientID: 'cyVifywq98pTlYqerWkEgJtj-gzGzoHsz',
-          clientSecret: 'oMPt58ErISwofnrMERB4M1xt',
-          repo: 'blog-gitalk-comment', // GitHub 仓库
+          clientID: 'Iv1.58b20169b3c3e0c0',
+          clientSecret: 'fbb16898a50005d526ba7ed81513819111026e9e', 
+          repo: 'blog', // GitHub 仓库
           owner: 'cometang', // GitHub仓库所有者
           admin: ['cometang'], // 对仓库有写权限的人
           // distractionFreeMode: true,
