@@ -38,6 +38,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
           { text: 'Vue', link: '/pages/658702/' },
           { text: 'react', link: '/pages/ba6d34/' },
           { text: '前端框架', link: '/pages/747e83/' },
+          { text: '原理重写', link: '/pages/cf251b/' },
         ],
       },
       {
