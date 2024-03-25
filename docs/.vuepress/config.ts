@@ -36,9 +36,12 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
           { text: 'JavaScript', link: '/pages/b349c2/' },
           { text: 'ES6', link: '/pages/712848/' },
           { text: 'Vue', link: '/pages/658702/' },
+          { text: '微信小程序', link: '/pages/97d274/' },
           { text: 'react', link: '/pages/ba6d34/' },
+          { text: 'react体系教程', link: '/pages/f39aaa/' },
           { text: '前端框架', link: '/pages/747e83/' },
-          { text: '原理重写', link: '/pages/cf251b/' },
+          { text: '大神之路', link: '/pages/cf251b/' },
+          { text: '面试汇总', link: '/pages/184e00/' },
         ],
       },
       {
@@ -47,6 +50,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         items: [
           { text: 'Node', link: '/pages/fbb16b/' },
           { text: 'PHP', link: '/pages/0a83b083bdf257cb/' },
+          { text: 'Go语言', link: '/pages/dc6df0/' },
         ],
       },
       {
@@ -159,7 +163,10 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     footer: {
       createYear: 2019, // 博客创建年份
       copyrightInfo:
-        'cometang | <a href="https://github.com/cometang" target="_blank">MIT License</a>', // 博客版权信息，支持a标签或换行标签</br>
+        `<p>
+        cometang | <a href="https://github.com/cometang" target="_blank">唐世杰</a>  <a href="https://beian.miit.gov.cn/" target="_blank">渝ICP备18015657号-2</a>
+        </p>
+        `, // 博客版权信息，支持a标签或换行标签</br>
     },
 
     // 扩展自动生成frontmatter。（当md文件的frontmatter不存在相应的字段时将自动添加。不会覆盖已有的数据。）
@@ -186,12 +193,14 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     ],
     ['meta', { name: 'baidu-site-verification', content: '7F55weZDDc' }], // 百度统计的站长验证（你可以去掉）
     ['meta', { name: 'theme-color', content: '#11a8cd' }], // 移动浏览器主题颜色
+    // <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7128159452203791"
+    //  crossorigin="anonymous"></script>
     [
       'script',
       {
-        'data-ad-client': 'ca-pub-7828333725993554',
+        crossorigin:'anonymous',
         async: 'async',
-        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7128159452203791',
       },
     ], // 网站关联Google AdSense 与 html格式广告支持（你可以去掉）
   ],
